@@ -1,0 +1,17 @@
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+}
+
+.form-top-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form-expanded-section {
+    display: none;
+    flex-direction: column;
+}
