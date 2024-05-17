@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import './App.css'
 import PersonalInfo from "./components/PersonalInfo";
-import {SectionInfo, EducationEntry, WorkplaceEntry, SkillEntry } from "./components/SectionInfo";
+import {SectionInfo} from "./components/SectionInfo";
 import Display from "./components/Display";
 
 const defaultPersonalInfo = {
@@ -16,11 +16,9 @@ const defaultPersonalInfo = {
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState(defaultPersonalInfo);
-  const [skillInfo, setSkillInfo] = useState([]);
-  /*
-  const [educationInfo, setEducationInfo] = useState(defaultEducationInfo);
-  const [workplaceInfo, setWorkplaceInfo] = useState(defaultWorkPlaceInfo);
-  */
+  const [skillEntries, setSkillEntries] = useState([]);
+  const [educationEntries, setEducationEntries] = useState([]);
+  const [workplaceEntries, setWorkplaceEntries] = useState([]);
 
   // Handler function to update the state
   const handlePersonalInfoChange = (field, value) => {
@@ -29,6 +27,114 @@ function App() {
       [field]: value,
     }));
   };
+
+  const removeWorkplaceEntry = (id) => {
+    setWorkplaceEntries((prevEntries) => prevEntries.filter(entry => entry.id !== id));
+  }
+
+  const addWorkplaceEntry = () => {
+    let id = Date.now();
+    const newEntry = {
+        key: id,
+        id: id,
+        removeFn: removeWorkplaceEntry,
+        contents: {},
+    };
+    setWorkplaceEntries([...workplaceEntries, newEntry]);
+  }
+
+  const removeEducationEntry = (id) => {
+    setEducationEntries((prevEntries) => prevEntries.filter(entry => entry.id !== id));
+  }
+
+  const addEducationEntry = () => {
+    let id = Date.now();
+    const newEntry = {
+        key: id,
+        id: id,
+        removeFn: removeEducationEntry,
+        contents: {},
+    };
+    setEducationEntries([...educationEntries, newEntry]);
+  }
+
+  const removeSkillEntry = (id) => {
+    setSkillEntries((prevEntries) => prevEntries.filter(entry => entry.id !== id));
+  }
+
+  const addSkillEntry = () => {
+    let id = Date.now();
+    const newEntry = {
+        key: id,
+        id: id,
+        removeFn: removeSkillEntry,
+        contents: {
+          'skillName': '',
+        },
+    };
+    setSkillEntries([...skillEntries, newEntry]);
+  }
+
+  const handleSkillChange = (id, value) => {
+    const index = skillEntries.findIndex((entry) => entry.id === id);
+    if (index !== -1) {
+      let desiredEntry = skillEntries[index];
+      const updatedEntry = {
+        ...desiredEntry,
+        contents: {
+          skillName: value,
+        },
+      };
+      const updatedEntries = [
+        ...skillEntries.slice(0, index),
+        updatedEntry,
+        ...skillEntries.slice(index + 1),
+      ];
+      setSkillEntries(updatedEntries)
+    }
+  }
+
+  const handleEducationalChange = (id, field, value) => {
+    const index = educationEntries.findIndex((entry) => entry.id === id);
+    if (index !== -1) {
+      let desiredEntry = educationEntries[index];
+      const updatedEntry = {
+        ...desiredEntry,
+        contents: {
+          ...desiredEntry.contents,
+          [field]: value,
+        },
+      };
+      const updatedEntries = [
+        ...educationEntries.slice(0, index),
+        updatedEntry,
+        ...educationEntries.slice(index + 1),
+      ];
+      setEducationEntries(updatedEntries)
+    }
+  }
+
+  const handleWorkplaceChange = (id, field, value) => {
+    const index = educationEntries.findIndex((entry) => entry.id === id);
+    if (index !== -1) {
+      let desiredEntry = educationEntries[index];
+      const updatedEntry = {
+        ...desiredEntry,
+        contents: {
+          ...desiredEntry.contents,
+          [field]: value,
+        },
+      };
+      const updatedEntries = [
+        ...educationEntries.slice(0, index),
+        updatedEntry,
+        ...educationEntries.slice(index + 1),
+      ];
+      setWorkplaceEntries(updatedEntries)
+    }
+  }
+
+
 
 
   return (
@@ -41,11 +147,11 @@ function App() {
           summary={personalInfo['summary']}
           handleChange={handlePersonalInfoChange}>
         </PersonalInfo>
-        <SectionInfo name="Educational Background"></SectionInfo>
-        <SectionInfo name="Professional Experiences"></SectionInfo>
-        <SectionInfo name="Skills"></SectionInfo>
+        <SectionInfo name="Educational Background" entries={educationEntries} addEntry={addEducationEntry} handleChange={handleEducationalChange}></SectionInfo>
+        <SectionInfo name="Professional Experiences" entries={workplaceEntries} addEntry={addWorkplaceEntry} handleChange={handleWorkplaceChange}></SectionInfo>
+        <SectionInfo name="Skills" entries={skillEntries} addEntry={addSkillEntry} handleChange={handleSkillChange}></SectionInfo>
       </div>
-      <Display personalInfo={personalInfo}></Display>
+      <Display personalInfo={personalInfo} skillEntries={skillEntries} educationEntries={educationEntries} workplaceEntries={workplaceEntries}></Display>
     </div>
   )
 }

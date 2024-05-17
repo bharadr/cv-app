@@ -3,72 +3,72 @@ import '../styles/forms.css'
 
 
 
-function EducationEntry({id, removeEntry}) {
+function EducationEntry({id, removeEntry, handleChange}) {
     return (
         <div className="education-entry">
             <div>
                 <label htmlFor="schoolName">School Name:</label>
-                <input type="text" id={`schoolName-${id}`} name="schoolName"/>
+                <input type="text" id={`schoolName-${id}`} name="schoolName" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
             </div>
             <div>
-                <label htmlFor="degree-major">Degree and Major:</label>
-                <input type="text" id={`degree-major-${id}`} name="degree-major"/>
+                <label htmlFor="degreeMajor">Degree and Major:</label>
+                <input type="text" id={`degreeMajor-${id}`} name="degreeMajor" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
             </div>
             <div>
-                <label htmlFor="education-location">Location:</label>
-                <input type="text" id={`education-location-${id}`} name="education-location"/>
+                <label htmlFor="educationLocation">Location:</label>
+                <input type="text" id={`educationLocation-${id}`} name="educationLocation" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
             </div>
             <div>
-                <label htmlFor="education-start-date">Start Date:</label>
-                <input type="text" id={`education-start-date-${id}`} name="education-start-date"/>
+                <label htmlFor="startDate">Start Date:</label>
+                <input type="text" id={`education-startDate-${id}`} name="startDate" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
             </div>
             <div>
-                <label htmlFor="education-end-date">End Date:</label>
-                <input type="text" id={`education-end-date-${id}`} name="education-end-date"/>
+                <label htmlFor="endDate">End Date:</label>
+                <input type="text" id={`education-endDate-${id}`} name="endDate" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
             </div>
             <button className="entry-delete-button" onClick={() => removeEntry(id)}>Remove</button>
         </div>
     )
 }
 
-function SkillEntry({id, removeEntry}) {
+function SkillEntry({id, removeEntry, handleChange}) {
     return (
         <div className="skill-entry">
             <div>
                 <label htmlFor="skill-name">Skill Name:</label>
-                <input type="text" id={`skill-name-${id}`}  name="skill-name"/>
+                <input type="text" id={`skill-name-${id}`}  name="skill-name" onChange={(e) => handleChange(id, e.target.value)}/>
             </div>
             <button className="entry-delete-button" onClick={() => removeEntry(id)}>Remove</button>
         </div>
     )
 }
 
-function WorkplaceEntry({id, removeEntry}) {
+function WorkplaceEntry({id, removeEntry, handleChange}) {
     return (
         <div className="workplace-entry">
             <div>
                 <label htmlFor="companyName">Company Name:</label>
-                <input type="text" id={`companyName-${id}`} name="companyName"/>
+                <input type="text" id={`companyName-${id}`} name="companyName" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
             </div>
             <div>
-                <label htmlFor="company-title">Title:</label>
-                <input type="text" id={`company-title-${id}`} name="company-title"/>
+                <label htmlFor="companyTitle">Title:</label>
+                <input type="text" id={`companyTitle-${id}`} name="companyTitle" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
             </div>
             <div>
-                <label htmlFor="company-location">Location:</label>
-                <input type="text" id={`company-location-${id}`} name="company-location"/>
+                <label htmlFor="companyLocation">Location:</label>
+                <input type="text" id={`companyLocation-${id}`} name="companyLocation" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
             </div>
             <div>
-                <label htmlFor="company-start-date">Start Date:</label>
-                <input type="text" id={`company-start-date-${id}`} name="company-start-date"/>
+                <label htmlFor="startDate">Start Date:</label>
+                <input type="text" id={`company-startDate-${id}`} name="startDate" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
             </div>
             <div>
-                <label htmlFor="company-end-date">End Date:</label>
-                <input type="text" id={`company-end-date-${id}`} name="company-end-date"/>
+                <label htmlFor="endDate">End Date:</label>
+                <input type="text" id={`company-endDate-${id}`} name="endDate" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
             </div>
             <div>
-                <label htmlFor="company-description">Description:</label>
-                <input type="text" id={`company-end-date-${id}`} name="company-description"/>
+                <label htmlFor="companyDescription">Description:</label>
+                <input type="text" id={`companyDescription-${id}`} name="companyDescription" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
             </div>
             <button className="entry-delete-button" onClick={() => removeEntry(id)}>Remove</button>
         </div>
@@ -76,23 +76,8 @@ function WorkplaceEntry({id, removeEntry}) {
 }
 
 
-function SectionInfo({name}) {
+function SectionInfo({name, entries, addEntry, handleChange}) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [entries, setEntries] = useState([]);
-
-  function removeEntry(id) {
-    setEntries((prevEntries) => prevEntries.filter(entry => entry.id !== id));
-  };
-
-  function addEntry() {
-    let id = Date.now();
-    const newEntry = {
-        key: id,
-        id: id,
-        removeFn: removeEntry,
-    };
-    setEntries([...entries, newEntry]);
-  }
 
   // Function to toggle the expanded section visibility
   function toggleExpand() {
@@ -107,12 +92,12 @@ function SectionInfo({name}) {
       </div>
       <div className="form-expanded-section" style={{ display: isExpanded ? 'flex' : 'none'}}>
         {entries.map(entry => {
-            if (entry.name === "Educational Background") {
-                return <EducationEntry key={entry.key} id={entry.id} removeEntry={entry.removeFn}/>
+            if (name === "Educational Background") {
+                return <EducationEntry key={entry.key} id={entry.id} removeEntry={entry.removeFn} handleChange={handleChange}/>
             } else if (name === "Professional Experiences") {
-                return <WorkplaceEntry key={entry.key} id={entry.id} removeEntry={entry.removeFn}/>
+                return <WorkplaceEntry key={entry.key} id={entry.id} removeEntry={entry.removeFn} handleChange={handleChange}/>
             } else {
-                return <SkillEntry key={entry.key} id={entry.id} removeEntry={entry.removeFn}/>
+                return <SkillEntry key={entry.key} id={entry.id} removeEntry={entry.removeFn} handleChange={handleChange}/>
             }
             })
         }
