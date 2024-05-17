@@ -86,15 +86,11 @@ function SectionInfo({name}) {
 
   function addEntry() {
     let id = Date.now();
-    let component;
-    if (name === 'Educational Background') {
-        component = <EducationEntry key={id} id={id} removeEntry={removeEntry}/>;
-    } else if (name === 'Professional Experiences') {
-        component = <WorkplaceEntry key={id} id={id} removeEntry={removeEntry}/>;
-    } else {
-        component = <SkillEntry key={id} id={id} removeEntry={removeEntry}/>;
-    }
-    const newEntry = {id, component};
+    const newEntry = {
+        key: id,
+        id: id,
+        removeFn: removeEntry,
+    };
     setEntries([...entries, newEntry]);
   }
 
@@ -110,7 +106,16 @@ function SectionInfo({name}) {
         <button className="form-expand-button" onClick={toggleExpand}>{isExpanded ? "Collapse" : "Expand"}</button>
       </div>
       <div className="form-expanded-section" style={{ display: isExpanded ? 'flex' : 'none'}}>
-        {entries.map(entry => entry.component)}
+        {entries.map(entry => {
+            if (entry.name === "Educational Background") {
+                return <EducationEntry key={entry.key} id={entry.id} removeEntry={entry.removeFn}/>
+            } else if (name === "Professional Experiences") {
+                return <WorkplaceEntry key={entry.key} id={entry.id} removeEntry={entry.removeFn}/>
+            } else {
+                return <SkillEntry key={entry.key} id={entry.id} removeEntry={entry.removeFn}/>
+            }
+            })
+        }
         <button className="entry-append-button" onClick={addEntry}>Add Entry</button>
       </div>
     </div>
