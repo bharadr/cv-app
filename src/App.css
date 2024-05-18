@@ -20,6 +20,7 @@
 #displaySection {
   flex: 1 1 70%;
   height: 100%;
+  padding: 20px;
 }
 
 #display-personal-info {
@@ -34,10 +35,16 @@
 
 #personal-name {
   text-align: center;
-  font-size: 30px;
+  font-size: 35px;
   font-weight: 600;
 }
 
 #personal-description {
   text-align: center;
+}
+
+.sectionHeader {
+  font-size: 24px;
+  font-weight: 600;
+
 }
