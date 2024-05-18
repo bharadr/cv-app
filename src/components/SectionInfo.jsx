@@ -7,24 +7,26 @@ function EducationEntry({id, removeEntry, handleChange}) {
     return (
         <div className="education-entry">
             <div>
-                <label htmlFor="schoolName">School Name:</label>
-                <input type="text" id={`schoolName-${id}`} name="schoolName" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
-            </div>
-            <div>
-                <label htmlFor="degreeMajor">Degree and Major:</label>
-                <input type="text" id={`degreeMajor-${id}`} name="degreeMajor" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
-            </div>
-            <div>
-                <label htmlFor="educationLocation">Location:</label>
-                <input type="text" id={`educationLocation-${id}`} name="educationLocation" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
-            </div>
-            <div>
-                <label htmlFor="startDate">Start Date:</label>
-                <input type="text" id={`education-startDate-${id}`} name="startDate" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
-            </div>
-            <div>
-                <label htmlFor="endDate">End Date:</label>
-                <input type="text" id={`education-endDate-${id}`} name="endDate" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
+                <div>
+                    <label htmlFor="schoolName">School Name:</label>
+                    <input type="text" id={`schoolName-${id}`} name="schoolName" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
+                </div>
+                <div>
+                    <label htmlFor="degreeMajor">Degree and Major:</label>
+                    <input type="text" id={`degreeMajor-${id}`} name="degreeMajor" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
+                </div>
+                <div>
+                    <label htmlFor="educationLocation">Location:</label>
+                    <input type="text" id={`educationLocation-${id}`} name="educationLocation" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
+                </div>
+                <div>
+                    <label htmlFor="startDate">Start Date:</label>
+                    <input type="text" id={`education-startDate-${id}`} name="startDate" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
+                </div>
+                <div>
+                    <label htmlFor="endDate">End Date:</label>
+                    <input type="text" id={`education-endDate-${id}`} name="endDate" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
+                </div>
             </div>
             <button className="entry-delete-button" onClick={() => removeEntry(id)}>Remove</button>
         </div>
@@ -49,24 +51,14 @@ function WorkplaceEntry({id, removeEntry, handleChange}) {
             <div>
                 <label htmlFor="companyName">Company Name:</label>
                 <input type="text" id={`companyName-${id}`} name="companyName" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
-            </div>
-            <div>
                 <label htmlFor="companyTitle">Title:</label>
                 <input type="text" id={`companyTitle-${id}`} name="companyTitle" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
-            </div>
-            <div>
                 <label htmlFor="companyLocation">Location:</label>
                 <input type="text" id={`companyLocation-${id}`} name="companyLocation" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
-            </div>
-            <div>
                 <label htmlFor="startDate">Start Date:</label>
                 <input type="text" id={`company-startDate-${id}`} name="startDate" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
-            </div>
-            <div>
                 <label htmlFor="endDate">End Date:</label>
                 <input type="text" id={`company-endDate-${id}`} name="endDate" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
-            </div>
-            <div>
                 <label htmlFor="companyDescription">Description:</label>
                 <textarea id={`companyDescription-${id}`} name="companyDescription" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
             </div>

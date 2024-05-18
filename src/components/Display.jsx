@@ -37,7 +37,9 @@ function WorkplaceEntrySection({companyName, title, startdate, endDate, location
     )
 }
 
-
+function SkillEntrySection({skillName}) {
+    return <div className="display-skill-entry">{skillName}</div>
+}
 
 
 
@@ -60,9 +62,11 @@ function Display({personalInfo, skillEntries, educationEntries, workplaceEntries
         </div>
         <div id="display-skills-info">
             <p className='sectionHeader'>Skills</p>
-            {skillEntries.map((entry, index) => (
-            <div key={index}>{entry.contents.skillName}</div>
-            ))}
+            <div id='skillContainer'>
+                {skillEntries.map((entry, index) => (
+                    <SkillEntrySection key={index} skillName={entry.contents.skillName}></SkillEntrySection>
+                ))}
+            </div>
         </div>
     </div>
   )

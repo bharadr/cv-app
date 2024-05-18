@@ -140,6 +140,7 @@ function App() {
   return (
     <div id="overallLayout">
       <div id="userBar">
+        <h1>Resume Builder</h1>
         <PersonalInfo fullName={personalInfo['fullName']}
           address={personalInfo['address']}
           email={personalInfo['email']}
