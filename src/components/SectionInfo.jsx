@@ -68,7 +68,7 @@ function WorkplaceEntry({id, removeEntry, handleChange}) {
             </div>
             <div>
                 <label htmlFor="companyDescription">Description:</label>
-                <input type="text" id={`companyDescription-${id}`} name="companyDescription" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
+                <textarea id={`companyDescription-${id}`} name="companyDescription" onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
             </div>
             <button className="entry-delete-button" onClick={() => removeEntry(id)}>Remove</button>
         </div>

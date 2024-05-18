@@ -46,5 +46,36 @@
 .sectionHeader {
   font-size: 24px;
   font-weight: 600;
+  margin: 0px;
+}
 
+.display-education-entry {
+  display: flex;
+  justify-content: space-between;
+}
+
+.display-educationHeader, .display-workplaceHeader {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.display-educationDetails, .display-workplaceDetails {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgb(76, 76, 76)
+}
+
+.displayWorkplaceTop {
+  display: flex;
+  justify-content: space-between;
+}
+
+.display-workplaceDescription {
+  font-size: 16px;
+  color: rgb(36, 36, 36);
+}
+
+pre {
+  margin: 0px;
+  font-family: inherit;
 }
