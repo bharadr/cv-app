@@ -10,35 +10,21 @@ function Display({personalInfo, skillEntries, educationEntries, workplaceEntries
             {personalInfo.phoneNumber}
             {personalInfo.summary}
         </div>
+        <div id="display-education-info">
+            {educationEntries.map((entry, index) => (
+                <div key={index}>{entry.contents.schoolName} {entry.contents.startDate} {entry.contents.endDate} {entry.contents.degreeMajor} {entry.contents.educationLocation}</div>
+            ))}
+        </div>
+        <div id="display-workplace-info">
+            {workplaceEntries.map((entry, index) => (
+                <div key={index}>{entry.contents.companyName} {entry.contents.companyTitle} {entry.contents.endDate} {entry.contents.startDate} {entry.contents.educationLocation}</div>
+            ))}
+        </div>
         <div id="display-skills-info">
             {skillEntries.map((entry, index) => (
             <div key={index}>{entry.contents.skillName}</div>
             ))}
         </div>
-        <div id="display-education-info">
-            {educationEntries.map((entry, index) => (
-                <>
-                <div key={index}>{entry.contents.schoolName}</div>
-                <div key={index}>{entry.contents.startDate}</div>
-                <div key={index}>{entry.contents.endDate}</div>
-                <div key={index}>{entry.contents.degreeMajor}</div>
-                <div key={index}>{entry.contents.educationLocation}</div>
-                </>
-            ))}
-        </div>
-        <div id="display-workplace-info">
-            {workplaceEntries.map((entry, index) => (
-                <>
-                <div key={index}>{entry.contents.companyName}</div>
-                <div key={index}>{entry.contents.companyTitle}</div>
-                <div key={index}>{entry.contents.endDate}</div>
-                <div key={index}>{entry.contents.degreeMajor}</div>
-                <div key={index}>{entry.contents.educationLocation}</div>
-                </>
-            ))}
-        </div>
-
-
     </div>
   )
 }

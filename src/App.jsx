@@ -115,9 +115,9 @@ function App() {
   }
 
   const handleWorkplaceChange = (id, field, value) => {
-    const index = educationEntries.findIndex((entry) => entry.id === id);
+    const index = workplaceEntries.findIndex((entry) => entry.id === id);
     if (index !== -1) {
-      let desiredEntry = educationEntries[index];
+      let desiredEntry = workplaceEntries[index];
       const updatedEntry = {
         ...desiredEntry,
         contents: {
@@ -126,9 +126,9 @@ function App() {
         },
       };
       const updatedEntries = [
-        ...educationEntries.slice(0, index),
+        ...workplaceEntries.slice(0, index),
         updatedEntry,
-        ...educationEntries.slice(index + 1),
+        ...workplaceEntries.slice(index + 1),
       ];
       setWorkplaceEntries(updatedEntries)
     }
