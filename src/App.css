@@ -2,6 +2,7 @@
   width: 100%;
   height: 100vh;
   margin: 0;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 #overallLayout {
@@ -19,4 +20,24 @@
 #displaySection {
   flex: 1 1 70%;
   height: 100%;
+}
+
+#display-personal-info {
+  display: flex;
+  flex-direction: column;
+}
+
+#personal-contact {
+  display: flex;
+  justify-content: space-between;
+}
+
+#personal-name {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+#personal-description {
+  text-align: center;
 }
