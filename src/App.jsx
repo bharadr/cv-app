@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 
 import './App.css'
@@ -14,10 +14,121 @@ const defaultPersonalInfo = {
   'summary': 'An Aspiring Entreprenuer now looking for a gig to pay the bills!',
 }
 
+const defaultWorkplaceEntries = [
+  {
+    key: 0,
+    id: 0,
+    contents: {
+      'companyName': 'Bobble',
+      'companyTitle': 'Senior Software Engineer - Infrastructure',
+      'companyLocation': 'Burlingame, CA',
+      'startDate': '01/2014',
+      'endDate': '10/2017',
+      'companyDescription': `Co-led the Bobble backend team, with 200M+ users and 1M+ DAU.
+      Used Node.js, Postgres, Redis, Elasticsearch and Cassandra.
+      Implemented sharing posts, adding topics to posts, likes, mentions in an agile team.
+      Used Elasticsearch to query hundreds of millions of documents accurately and return results in under a second.`
+    },
+  },
+  {
+    key: 1,
+    id: 1,
+    contents: {
+      'companyName': 'Bobble',
+      'companyTitle': 'Senior Software Engineer - Infrastructure',
+      'companyLocation': 'Burlingame, CA',
+      'startDate': '01/2014',
+      'endDate': '10/2017',
+      'companyDescription': `Co-led the Bobble backend team, with 200M+ users and 1M+ DAU.
+      Used Node.js, Postgres, Redis, Elasticsearch and Cassandra.
+      Implemented sharing posts, adding topics to posts, likes, mentions in an agile team.
+      Used Elasticsearch to query hundreds of millions of documents accurately and return results in under a second.`
+    },
+  },
+  {
+    key: 2,
+    id: 2,
+    contents: {
+      'companyName': 'Bobble',
+      'companyTitle': 'Senior Software Engineer - Infrastructure',
+      'companyLocation': 'Burlingame, CA',
+      'startDate': '01/2014',
+      'endDate': '10/2017',
+      'companyDescription': `Co-led the Bobble backend team, with 200M+ users and 1M+ DAU.
+      Used Node.js, Postgres, Redis, Elasticsearch and Cassandra.
+      Implemented sharing posts, adding topics to posts, likes, mentions in an agile team.
+      Used Elasticsearch to query hundreds of millions of documents accurately and return results in under a second.`
+    },
+  },
+]
+
+const defaultEducationEntries = [
+  {
+    key: 0,
+    id: 0,
+    contents: {
+      'schoolName': 'Stanford University',
+      'degreeMajor': 'B.S. Computer Science',
+      'educationLocation': 'Palo Alto, CA',
+      'startDate': '01/2014',
+      'endDate': '10/2017',
+    },
+  },
+  {
+    key: 1,
+    id: 1,
+    contents: {
+      'schoolName': 'Stanford University',
+      'degreeMajor': 'B.S. Computer Science',
+      'educationLocation': 'Palo Alto, CA',
+      'startDate': '01/2014',
+      'endDate': '10/2017',
+    },
+  },
+  {
+    key: 2,
+    id: 2,
+    contents: {
+      'schoolName': 'Stanford University',
+      'degreeMajor': 'B.S. Computer Science',
+      'educationLocation': 'Palo Alto, CA',
+      'startDate': '01/2014',
+      'endDate': '10/2017',
+    },
+  },
+]
+
+const defaultSkillEntries = [
+  {
+    key: 0,
+    id: 0,
+    contents: {
+      'skillName': 'C++'
+    },
+  },
+  {
+    key: 1,
+    id: 1,
+    contents: {
+      'skillName': 'Writing'
+    },
+  },
+  {
+    key: 2,
+    id: 2,
+    contents: {
+      'skillName': 'Tableau'
+    },
+  },
+]
+
+
 function App() {
   const [personalInfo, setPersonalInfo] = useState(defaultPersonalInfo);
+  const [workplaceEntries, setWorkplaceEntries] = useState(defaultWorkplaceEntries);
+  const [educationEntries, setEducationEntries] = useState(defaultEducationEntries);
+  const [skillEntries, setSkillEntries] = useState(defaultSkillEntries);
 
-  // Handler function to update the state
   const handlePersonalInfoChange = (field, value) => {
     setPersonalInfo(prevState => ({
       ...prevState,
@@ -25,68 +136,11 @@ function App() {
     }));
   };
 
-  const removeWorkplaceEntry = (id) => {
-    setWorkplaceEntries((prevEntries) => prevEntries.filter(entry => entry.id !== id));
-  }
-
-  const defaultWorkplaceEntries = [
-    {
-      key: 0,
-      id: 0,
-      contents: {
-        'companyName': 'Bobble',
-        'companyTitle': 'Senior Software Engineer - Infrastructure',
-        'companyLocation': 'Burlingame, CA',
-        'startDate': '01/2014',
-        'endDate': '10/2017',
-        'companyDescription': `Co-led the Bobble backend team, with 200M+ users and 1M+ DAU.
-        Used Node.js, Postgres, Redis, Elasticsearch and Cassandra.
-        Implemented sharing posts, adding topics to posts, likes, mentions in an agile team.
-        Used Elasticsearch to query hundreds of millions of documents accurately and return results in under a second.`
-      },
-      removeFn: () => removeWorkplaceEntry(0),
-    },
-    {
-      key: 1,
-      id: 1,
-      contents: {
-        'companyName': 'Bobble',
-        'companyTitle': 'Senior Software Engineer - Infrastructure',
-        'companyLocation': 'Burlingame, CA',
-        'startDate': '01/2014',
-        'endDate': '10/2017',
-        'companyDescription': `Co-led the Bobble backend team, with 200M+ users and 1M+ DAU.
-        Used Node.js, Postgres, Redis, Elasticsearch and Cassandra.
-        Implemented sharing posts, adding topics to posts, likes, mentions in an agile team.
-        Used Elasticsearch to query hundreds of millions of documents accurately and return results in under a second.`
-      },
-      removeFn: () => removeWorkplaceEntry(1),
-    },
-    {
-      key: 2,
-      id: 2,
-      contents: {
-        'companyName': 'Bobble',
-        'companyTitle': 'Senior Software Engineer - Infrastructure',
-        'companyLocation': 'Burlingame, CA',
-        'startDate': '01/2014',
-        'endDate': '10/2017',
-        'companyDescription': `Co-led the Bobble backend team, with 200M+ users and 1M+ DAU.
-        Used Node.js, Postgres, Redis, Elasticsearch and Cassandra.
-        Implemented sharing posts, adding topics to posts, likes, mentions in an agile team.
-        Used Elasticsearch to query hundreds of millions of documents accurately and return results in under a second.`
-      },
-      removeFn: () => removeWorkplaceEntry(2),
-    },
-  ]
-  const [workplaceEntries, setWorkplaceEntries] = useState(defaultWorkplaceEntries);
-
   const addWorkplaceEntry = () => {
     let id = Date.now();
     const newEntry = {
         key: id,
         id: id,
-        removeFn: removeWorkplaceEntry,
         contents: {},
     };
     setWorkplaceEntries([...workplaceEntries, newEntry]);
@@ -112,57 +166,11 @@ function App() {
     }
   }
 
-  const removeEducationEntry = (id) => {
-    setEducationEntries((prevEntries) => prevEntries.filter(entry => entry.id !== id));
-  }
-
-  const defaultEducationEntries = [
-    {
-      key: 0,
-      id: 0,
-      contents: {
-        'schoolName': 'Stanford University',
-        'degreeMajor': 'B.S. Computer Science',
-        'educationLocation': 'Palo Alto, CA',
-        'startDate': '01/2014',
-        'endDate': '10/2017',
-      },
-      removeFn: () => removeEducationEntry(0),
-    },
-    {
-      key: 1,
-      id: 1,
-      contents: {
-        'schoolName': 'Stanford University',
-        'degreeMajor': 'B.S. Computer Science',
-        'educationLocation': 'Palo Alto, CA',
-        'startDate': '01/2014',
-        'endDate': '10/2017',
-      },
-      removeFn: () => removeEducationEntry(1),
-    },
-    {
-      key: 2,
-      id: 2,
-      contents: {
-        'schoolName': 'Stanford University',
-        'degreeMajor': 'B.S. Computer Science',
-        'educationLocation': 'Palo Alto, CA',
-        'startDate': '01/2014',
-        'endDate': '10/2017',
-      },
-      removeFn: () => removeEducationEntry(2),
-    },
-  ]
-
-  const [educationEntries, setEducationEntries] = useState(defaultEducationEntries);
-
   const addEducationEntry = () => {
     let id = Date.now();
     const newEntry = {
         key: id,
         id: id,
-        removeFn: removeEducationEntry,
         contents: {},
     };
     setEducationEntries([...educationEntries, newEntry]);
@@ -188,44 +196,11 @@ function App() {
     }
   }
 
-  const removeSkillEntry = (id) => {
-    setSkillEntries((prevEntries) => prevEntries.filter(entry => entry.id !== id));
-  }
-
-  const defaultSkillEntries = [
-    {
-      key: 0,
-      id: 0,
-      contents: {
-        'skillName': 'C++'
-      },
-      removeFn: () => removeSkillEntry(0),
-    },
-    {
-      key: 1,
-      id: 1,
-      contents: {
-        'skillName': 'Writing'
-      },
-      removeFn: () => removeSkillEntry(1),
-    },
-    {
-      key: 2,
-      id: 2,
-      contents: {
-        'skillName': 'Tableau'
-      },
-      removeFn: () => removeSkillEntry(2),
-    },
-  ]
-  const [skillEntries, setSkillEntries] = useState(defaultSkillEntries);
-
   const addSkillEntry = () => {
     let id = Date.now();
     const newEntry = {
         key: id,
         id: id,
-        removeFn: removeSkillEntry,
         contents: {
           'skillName': '',
         },
@@ -263,9 +238,9 @@ function App() {
           summary={personalInfo['summary']}
           handleChange={handlePersonalInfoChange}>
         </PersonalInfo>
-        <SectionInfo name="Educational Background" entries={educationEntries} addEntry={addEducationEntry} handleChange={handleEducationalChange}></SectionInfo>
-        <SectionInfo name="Professional Experiences" entries={workplaceEntries} addEntry={addWorkplaceEntry} handleChange={handleWorkplaceChange}></SectionInfo>
-        <SectionInfo name="Skills" entries={skillEntries} addEntry={addSkillEntry} handleChange={handleSkillChange}></SectionInfo>
+        <SectionInfo name="Educational Background" entries={educationEntries} addEntry={addEducationEntry} handleChange={handleEducationalChange} stateSetter={setEducationEntries}></SectionInfo>
+        <SectionInfo name="Professional Experiences" entries={workplaceEntries} addEntry={addWorkplaceEntry} handleChange={handleWorkplaceChange} stateSetter={setWorkplaceEntries}></SectionInfo>
+        <SectionInfo name="Skills" entries={skillEntries} addEntry={addSkillEntry} handleChange={handleSkillChange} stateSetter={setSkillEntries}></SectionInfo>
       </div>
       <Display personalInfo={personalInfo} skillEntries={skillEntries} educationEntries={educationEntries} workplaceEntries={workplaceEntries}></Display>
     </div>

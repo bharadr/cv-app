@@ -8,7 +8,7 @@ function EducationEntry({id, removeEntry, handleChange, contents}) {
         <div className="education-entry">
             <div>
                 <label htmlFor="schoolName">School Name:</label>
-                <input type="text" id={`schoolName-${id}`} name="schoolName"  value={contents.schoolName} onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
+                <input type="text" id={`schoolName-${id}`} name="schoolName" value={contents.schoolName} onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
                 <label htmlFor="degreeMajor">Degree and Major:</label>
                 <input type="text" id={`degreeMajor-${id}`} name="degreeMajor" value={contents.degreeMajor} onChange={(e) => handleChange(id, e.target.name, e.target.value)}/>
                 <label htmlFor="educationLocation">Location:</label>
@@ -58,12 +58,16 @@ function WorkplaceEntry({id, removeEntry, handleChange, contents}) {
 }
 
 
-function SectionInfo({name, entries, addEntry, handleChange}) {
+function SectionInfo({name, entries, addEntry, handleChange, stateSetter}) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   // Function to toggle the expanded section visibility
   function toggleExpand() {
     setIsExpanded(!isExpanded);
+  }
+
+  const removeEntry = (id) => {
+    stateSetter((prevEntries) => prevEntries.filter(entry => entry.id !== id));
   }
 
   return (
@@ -75,11 +79,11 @@ function SectionInfo({name, entries, addEntry, handleChange}) {
       <div className="form-expanded-section" style={{ display: isExpanded ? 'flex' : 'none'}}>
         {entries.map(entry => {
             if (name === "Educational Background") {
-                return <EducationEntry key={entry.key} id={entry.id} removeEntry={entry.removeFn} handleChange={handleChange} contents={entry.contents}/>
+                return <EducationEntry key={entry.key} id={entry.id} removeEntry={removeEntry} handleChange={handleChange} contents={entry.contents}/>
             } else if (name === "Professional Experiences") {
-                return <WorkplaceEntry key={entry.key} id={entry.id} removeEntry={entry.removeFn} handleChange={handleChange} contents={entry.contents}/>
+                return <WorkplaceEntry key={entry.key} id={entry.id} removeEntry={removeEntry} handleChange={handleChange} contents={entry.contents}/>
             } else {
-                return <SkillEntry key={entry.key} id={entry.id} removeEntry={entry.removeFn} handleChange={handleChange} skillName={entry.contents.skillName}/>
+                return <SkillEntry key={entry.key} id={entry.id} removeEntry={removeEntry} handleChange={handleChange} skillName={entry.contents.skillName}/>
             }
             })
         }
